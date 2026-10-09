@@ -227,8 +227,46 @@
 
         .filter-grid {
             display: grid;
-            grid-template-columns: repeat(5, 1fr);
+            grid-template-columns: repeat(5, minmax(0, 1fr));
             gap: 12px;
+        }
+
+        /* Runtime is CineMind's key differentiator: give it visual priority. */
+        .filter-group.runtime-feature {
+            grid-column: span 2;
+            padding: 14px 16px;
+            border: 1px solid rgba(59,130,246,0.55);
+            border-radius: 13px;
+            background: linear-gradient(135deg, rgba(59,130,246,0.16), rgba(37,99,235,0.06));
+            box-shadow: 0 8px 24px rgba(37,99,235,0.10);
+        }
+
+        .runtime-feature label {
+            color: #60a5fa;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .runtime-feature select {
+            min-height: 52px;
+            font-size: 16px;
+            font-weight: 700;
+            border-color: rgba(59,130,246,0.45);
+        }
+
+        .runtime-feature::after {
+            content: "Choose a movie length that fits your time";
+            display: block;
+            margin-top: 9px;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        body.light .filter-group.runtime-feature {
+            background: linear-gradient(135deg, rgba(59,130,246,0.10), rgba(37,99,235,0.03));
         }
 
         .filter-group label {
@@ -524,7 +562,11 @@
             }
 
             .filter-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .filter-group.runtime-feature {
+                grid-column: span 2;
             }
         }
 
@@ -534,7 +576,11 @@
             }
 
             .filter-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .filter-group.runtime-feature {
+                grid-column: 1 / -1;
             }
 
             .hero {
@@ -558,6 +604,10 @@
 
             .filter-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .filter-group.runtime-feature {
+                grid-column: 1 / -1;
             }
 
             .hero {
@@ -848,10 +898,10 @@
 
                     <!-- NEW RUNTIME FILTER -->
 
-                    <div class="filter-group">
+                    <div class="filter-group runtime-feature">
 
                         <label for="runtimeFilter">
-                            Runtime
+                            ⏱ Runtime — Find a Movie That Fits Your Time
                         </label>
 
                         <select id="runtimeFilter">
